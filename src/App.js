@@ -1,12 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import ListOfReviews from "./components/ListOfReviews";
 
 function App() {
   return (
     <div className="App">
-      <Routes></Routes>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/reviews" element={<ListOfReviews />} />
+      </Routes>
     </div>
   );
 }
