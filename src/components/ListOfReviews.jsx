@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { getReviews } from "../api";
+import { useNavigate } from "react-router-dom";
 const ListOfReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -13,6 +14,10 @@ const ListOfReviews = () => {
     });
   }, []);
 
+  const navigateToReview = (review_id) => {
+    navigate(`/reviews/${review_id}`);
+  };
+
   return (
     <section>
       {isLoading ? (
@@ -21,7 +26,13 @@ const ListOfReviews = () => {
         <section className="review-list-section">
           {reviews.map((review) => {
             return (
-              <section key={review.title} className="review-list-cards">
+              <section
+                key={review.title}
+                className="review-list-cards"
+                onClick={() => {
+                  navigateToReview(review.review_id);
+                }}
+              >
                 <h2>{review.title}</h2>
                 <img src={review.review_img_url} alt={review.title} />
                 <h4>{review.owner}</h4>
