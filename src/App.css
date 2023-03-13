@@ -80,3 +80,15 @@ body {
   width: 80vw;
   margin: auto;
 }
+
+.comment-section {
+  font-size: smaller;
+  margin: auto;
+  width: 70vw;
+  background-color: #282c34;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  text-align: left;
+}

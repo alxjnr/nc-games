@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { getReviewById } from "../api";
+import { getReviewById, getCommentsOnReview } from "../api";
 import { useParams } from "react-router-dom";
+import ViewComments from "./ViewComments";
 
 const ViewReview = () => {
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [createdDate, setCreatedDate] = useState("");
+  const [comments, setComments] = useState([]);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
+  const [isReadingComments, setIsReadingComments] = useState(false);
 
   const { review_id } = useParams();
 
@@ -18,6 +22,21 @@ const ViewReview = () => {
       setIsLoading(false);
     });
   }, [review_id]);
+
+  const renderComments = (review_id) => {
+    if (isReadingComments) {
+      setComments([]);
+      setIsReadingComments(false);
+    } else {
+      setIsLoadingComments(true);
+      getCommentsOnReview(review_id).then((data) => {
+        setComments(data);
+        setIsLoadingComments(false);
+        setIsReadingComments(true);
+      });
+    }
+  };
+
   return (
     <section>
       {isLoading ? (
@@ -35,7 +54,19 @@ const ViewReview = () => {
           <section className="review-body-section">
             <h3>{review.review_body}</h3>
           </section>
-          <button>view comments ({review.comment_count})</button>
+          <button
+            onClick={() => {
+              renderComments(review_id);
+            }}
+          >
+            {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>} (
+            {review.comment_count})
+          </button>
+          <ViewComments
+            isLoadingComments={isLoadingComments}
+            comments={comments}
+            isReadingComments={isReadingComments}
+          />
         </section>
       )}
     </section>
