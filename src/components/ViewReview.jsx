@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getReviewById, getCommentsOnReview } from "../api";
+import { getReviewById, getCommentsOnReview, patchUpvoteReview } from "../api";
 import { useParams } from "react-router-dom";
 import ViewComments from "./ViewComments";
 
@@ -10,15 +10,17 @@ const ViewReview = () => {
   const [comments, setComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [isReadingComments, setIsReadingComments] = useState(false);
+  const [votes, setVotes] = useState("");
+  const [voteWarning, setVoteWarning] = useState(false);
 
   const { review_id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
     getReviewById(review_id).then((data) => {
-      console.log(data);
       setReview(data[0]);
       setCreatedDate(data[0].created_at.slice(0, 10));
+      setVotes(data[0].votes);
       setIsLoading(false);
     });
   }, [review_id]);
@@ -37,6 +39,19 @@ const ViewReview = () => {
     }
   };
 
+  const upvoteReview = (review_id) => {
+    setVoteWarning(false);
+    patchUpvoteReview(review_id)
+      .then(() => {
+        setVotes((votes) => {
+          return votes + 1;
+        });
+      })
+      .catch(() => {
+        setVoteWarning(true);
+      });
+  };
+
   return (
     <section>
       {isLoading ? (
@@ -47,21 +62,31 @@ const ViewReview = () => {
           <section className="single-review-date-username-section">
             <h5>{createdDate}</h5>
             <h5>{review.owner}</h5>
-            <h5>votes: {review.votes}</h5>
+            <h5>votes: {votes}</h5>
           </section>
           <img src={review.review_img_url} alt={review.title} />
           <h5>game designer: {review.designer}</h5>
           <section className="review-body-section">
             <h3>{review.review_body}</h3>
           </section>
-          <button
-            onClick={() => {
-              renderComments(review_id);
-            }}
-          >
-            {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>} (
-            {review.comment_count})
-          </button>
+          <section className="review-button-container">
+            <button
+              onClick={() => {
+                renderComments(review_id);
+              }}
+            >
+              {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>}{" "}
+              ({review.comment_count})
+            </button>
+            <button
+              onClick={() => {
+                upvoteReview(review_id);
+              }}
+            >
+              upvote
+            </button>
+          </section>
+          {voteWarning ? <p>cannot vote at this time</p> : <section></section>}
           <ViewComments
             isLoadingComments={isLoadingComments}
             comments={comments}

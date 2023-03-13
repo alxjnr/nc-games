@@ -21,3 +21,13 @@ export const getCommentsOnReview = (review_id) => {
     return data.comments;
   });
 };
+
+export const patchUpvoteReview = (review_id) => {
+  return gamesApi
+    .patch(`/reviews/${review_id}`, {
+      inc_votes: 1,
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};
