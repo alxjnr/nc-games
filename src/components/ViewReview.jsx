@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getReviewById, getCommentsOnReview } from "../api";
 import { useParams } from "react-router-dom";
+import ViewComments from "./ViewComments";
 
 const ViewReview = () => {
   const [review, setReview] = useState({});
@@ -61,27 +62,11 @@ const ViewReview = () => {
             {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>} (
             {review.comment_count})
           </button>
-          <section>
-            {isLoadingComments ? (
-              <h2>loading...</h2>
-            ) : (
-              <section>
-                {comments.map((comment) => {
-                  return (
-                    <section
-                      key={comment.created_at}
-                      className="comment-section"
-                    >
-                      <h5>{comment.author}</h5>
-                      <h4>{comment.body}</h4>
-                      <h5>votes: {comment.votes}</h5>
-                      <h5>{comment.created_at.slice(0, 10)}</h5>
-                    </section>
-                  );
-                })}
-              </section>
-            )}
-          </section>
+          <ViewComments
+            isLoadingComments={isLoadingComments}
+            comments={comments}
+            isReadingComments={isReadingComments}
+          />
         </section>
       )}
     </section>
