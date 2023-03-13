@@ -69,3 +69,14 @@ body {
   background-color: rgb(1, 73, 73);
   border-radius: 5px;
 }
+
+.single-review-date-username-section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+}
+
+.review-body-section {
+  width: 80vw;
+  margin: auto;
+}

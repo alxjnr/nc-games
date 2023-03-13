@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigateToHome = () => {
+    navigate("/");
+  };
+  const navigate = useNavigate();
   return (
     <section>
-      <h1>nc-games</h1>
+      <h1 onClick={navigateToHome}>nc-games</h1>
     </section>
   );
 };
