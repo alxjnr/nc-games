@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: rgb(2, 63, 63);
+  color: white;
+}
+
+.review-list-section {
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.review-list-cards {
+  margin: auto;
+  margin-top: 25px;
+  background-color: darkcyan;
+  width: 70vw;
+  padding: 25px;
+  border-radius: 5px;
+  color: white;
+}
+
+.review-list-cards img {
+  width: 70vw;
+  max-width: 450px;
+}
+
+.votes-comments-section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  background-color: rgb(1, 73, 73);
+  border-radius: 5px;
+}
