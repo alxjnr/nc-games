@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getReviews } from "../api";
 const ListOfReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get("https://nc-games-hsvp.onrender.com/api/reviews").then((res) => {
-      setReviews(res.data.reviews);
+    getReviews().then((data) => {
+      setReviews(data);
       setIsLoading(false);
     });
   }, []);
