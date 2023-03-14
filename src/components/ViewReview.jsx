@@ -12,8 +12,6 @@ const ViewReview = () => {
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [createdDate, setCreatedDate] = useState("");
-  const [comments, setComments] = useState([]);
-  const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [isReadingComments, setIsReadingComments] = useState(false);
   const [votes, setVotes] = useState("");
   const [voteWarning, setVoteWarning] = useState(false);
@@ -22,6 +20,7 @@ const ViewReview = () => {
   const { review_id } = useParams();
 
   useEffect(() => {
+    console.log("in use effect");
     setIsLoading(true);
     getReviewById(review_id).then((data) => {
       setReview(data[0]);
@@ -31,17 +30,11 @@ const ViewReview = () => {
     });
   }, [review_id]);
 
-  const renderComments = (review_id) => {
+  const renderComments = () => {
     if (isReadingComments) {
-      setComments([]);
       setIsReadingComments(false);
     } else {
-      setIsLoadingComments(true);
-      getCommentsOnReview(review_id).then((data) => {
-        setComments(data);
-        setIsLoadingComments(false);
-        setIsReadingComments(true);
-      });
+      setIsReadingComments(true);
     }
   };
 
@@ -128,11 +121,15 @@ const ViewReview = () => {
             <section></section>
           )}
           {voteWarning ? <p>cannot vote at this time</p> : <section></section>}
-          <ViewComments
-            isLoadingComments={isLoadingComments}
-            comments={comments}
-            isReadingComments={isReadingComments}
-          />
+          {isReadingComments ? (
+            <ViewComments
+              isReadingComments={isReadingComments}
+              review_id={review_id}
+              setIsReadingComments={setIsReadingComments}
+            />
+          ) : (
+            <section></section>
+          )}
         </section>
       )}
     </section>

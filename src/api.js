@@ -41,3 +41,15 @@ export const patchDownvoteReview = (review_id) => {
       return data;
     });
 };
+
+export const postCommentToReview = (review_id, body) => {
+  console.log(review_id, body);
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, {
+      username: "grumpy19",
+      body: body,
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};
