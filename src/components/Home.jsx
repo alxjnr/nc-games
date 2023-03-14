@@ -12,8 +12,9 @@ const Home = () => {
   };
 
   return (
-    <section>
+    <section className="home-section">
       <button onClick={navigateToReviews}>reviews</button>
+      <br></br>
       <button onClick={navigateToCategories}>categories</button>
     </section>
   );

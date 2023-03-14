@@ -6,7 +6,7 @@ const Header = () => {
   };
   const navigate = useNavigate();
   return (
-    <section>
+    <section className="header-section">
       <h1 onClick={navigateToHome}>nc-games</h1>
     </section>
   );
