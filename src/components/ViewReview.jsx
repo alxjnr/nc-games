@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { getReviewById, getCommentsOnReview, patchUpvoteReview } from "../api";
+import {
+  getReviewById,
+  getCommentsOnReview,
+  patchUpvoteReview,
+  patchDownvoteReview,
+} from "../api";
 import { useParams } from "react-router-dom";
 import ViewComments from "./ViewComments";
 
@@ -12,6 +17,7 @@ const ViewReview = () => {
   const [isReadingComments, setIsReadingComments] = useState(false);
   const [votes, setVotes] = useState("");
   const [voteWarning, setVoteWarning] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
 
   const { review_id } = useParams();
 
@@ -40,16 +46,37 @@ const ViewReview = () => {
   };
 
   const upvoteReview = (review_id) => {
-    setVoteWarning(false);
-    patchUpvoteReview(review_id)
-      .then(() => {
-        setVotes((votes) => {
-          return votes + 1;
+    if (!hasVoted) {
+      setVoteWarning(false);
+      patchUpvoteReview(review_id)
+        .then(() => {
+          setVotes((votes) => {
+            return votes + 1;
+          });
+          setHasVoted(true);
+        })
+        .catch(() => {
+          setVoteWarning(true);
         });
-      })
-      .catch(() => {
-        setVoteWarning(true);
-      });
+    } else {
+    }
+  };
+
+  const downvoteReview = (review_id) => {
+    if (!hasVoted) {
+      setVoteWarning(false);
+      patchDownvoteReview(review_id)
+        .then(() => {
+          setVotes((votes) => {
+            return votes - 1;
+          });
+        })
+        .catch(() => {
+          setVoteWarning(true);
+        });
+      setHasVoted(true);
+    } else {
+    }
   };
 
   return (
@@ -78,14 +105,28 @@ const ViewReview = () => {
               {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>}{" "}
               ({review.comment_count})
             </button>
-            <button
-              onClick={() => {
-                upvoteReview(review_id);
-              }}
-            >
-              upvote
-            </button>
+            <section>
+              <button
+                onClick={() => {
+                  upvoteReview(review_id);
+                }}
+              >
+                upvote
+              </button>
+              <button
+                onClick={() => {
+                  downvoteReview(review_id);
+                }}
+              >
+                downvote
+              </button>
+            </section>
           </section>
+          {hasVoted ? (
+            <p>thanks for your vote on this review</p>
+          ) : (
+            <section></section>
+          )}
           {voteWarning ? <p>cannot vote at this time</p> : <section></section>}
           <ViewComments
             isLoadingComments={isLoadingComments}

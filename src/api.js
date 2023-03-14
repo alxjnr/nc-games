@@ -31,3 +31,13 @@ export const patchUpvoteReview = (review_id) => {
       return data;
     });
 };
+
+export const patchDownvoteReview = (review_id) => {
+  return gamesApi
+    .patch(`/reviews/${review_id}`, {
+      inc_votes: -1,
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};
