@@ -10,11 +10,9 @@ const ListOfReviews = () => {
     order: "",
   });
   const [order, setOrder] = useState("desc");
-  const [btnClass, setBtnClass] = useState(false);
   const [dateBtnColor, setDateBtnColor] = useState("#2f80ed");
   const [commentsBtnColor, setCommentsBtnColor] = useState("#2f80ed");
   const [votesBtnColor, setVotesBtnColor] = useState("#2f80ed");
-  const [orderBtnColor, setOrderBtnColor] = useState("#2f80ed");
 
   const navigate = useNavigate();
 
@@ -44,6 +42,9 @@ const ListOfReviews = () => {
         sort_by: "",
         order: "",
       });
+      setDateBtnColor("#2f80ed");
+      setCommentsBtnColor("#2f80ed");
+      setVotesBtnColor("#2f80ed");
     });
   };
 
@@ -53,7 +54,17 @@ const ListOfReviews = () => {
     } else {
       setOrder("asc");
     }
-    console.log(order);
+  };
+
+  const clearQueries = () => {
+    setReviewQuery({
+      category: "",
+      sort_by: "",
+      order: "",
+    });
+    setDateBtnColor("#2f80ed");
+    setCommentsBtnColor("#2f80ed");
+    setVotesBtnColor("#2f80ed");
   };
 
   return (
@@ -63,7 +74,9 @@ const ListOfReviews = () => {
         <section className="sort-reviews-buttons">
           <button
             onClick={() => {
-              dateBtnColor === "#0d2c57"
+              dateBtnColor === "#0d2c57" &&
+              commentsBtnColor === "#0d2c57" &&
+              votesBtnColor === "#0d2c57"
                 ? setDateBtnColor("#2f80ed")
                 : setDateBtnColor("#0d2c57");
               setReviewQuery((queries) => {
@@ -113,6 +126,7 @@ const ListOfReviews = () => {
           <button id="search-btn" onClick={fetchReviewsWithQuery}>
             search
           </button>
+          <button onClick={clearQueries}>clear</button>
         </section>
       </section>
       <section>
@@ -132,6 +146,7 @@ const ListOfReviews = () => {
                   <h2>{review.title}</h2>
                   <img src={review.review_img_url} alt={review.title} />
                   <h4>{review.owner}</h4>
+                  <h5>{review.created_at.slice(0, 10)}</h5>
                   <section className="votes-comments-section">
                     <h5>votes: {review.votes}</h5>
                     <h5>comments: {review.comment_count}</h5>

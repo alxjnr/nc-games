@@ -61,15 +61,16 @@ body {
 .sort-reviews-section {
   padding: 15px;
   background-color: #282c34;
-  width: 70vw;
+  width: 80vw;
   margin: auto;
   margin-top: 25px;
   border-radius: 5px;
 }
 
 .sort-reviews-buttons {
+  padding: 15px;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
@@ -77,6 +78,7 @@ body {
   padding: 5px 2vw 5px 2vw;
   height: 30px;
   font-size: x-small;
+  margin: 5px;
 }
 
 #search-btn {

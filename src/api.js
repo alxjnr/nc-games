@@ -34,7 +34,6 @@ export const getReviews = (category, sort_by, order) => {
     }
   }
 
-  console.log(`/reviews${isQuery}${categoryQuery}${sortByQuery}${orderQuery}`);
   return gamesApi
     .get(`/reviews${isQuery}${categoryQuery}${sortByQuery}${orderQuery}`)
     .then(({ data }) => {
