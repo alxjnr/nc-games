@@ -103,3 +103,20 @@ body {
 ul {
   list-style: none;
 }
+
+.category-list-section {
+  border-radius: 5px;
+  background-color: #282c34;
+  padding: 15px;
+  width: 70vw;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.categories-review-list-section {
+  margin: auto;
+  padding: 15px;
+  background-color: #282c34;
+  border-radius: 5px;
+  margin-top: 25px;
+}

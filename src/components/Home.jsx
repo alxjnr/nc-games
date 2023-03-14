@@ -7,9 +7,14 @@ const Home = () => {
     navigate("/reviews");
   };
 
+  const navigateToCategories = () => {
+    navigate("/categories");
+  };
+
   return (
     <section>
       <button onClick={navigateToReviews}>reviews</button>
+      <button onClick={navigateToCategories}>categories</button>
     </section>
   );
 };
