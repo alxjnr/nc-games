@@ -75,7 +75,7 @@ const ViewComments = ({ isReadingComments, review_id }) => {
             {!isReadingComments ? (
               <section></section>
             ) : (
-              <section>
+              <section className="post-message-section">
                 <form
                   onSubmit={(event) => {
                     handleSubmit(event, review_id);

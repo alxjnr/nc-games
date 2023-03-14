@@ -52,3 +52,15 @@ export const postCommentToReview = (review_id, body) => {
       return data;
     });
 };
+
+export const getCategories = () => {
+  return gamesApi.get(`/categories`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getReviewsByCategory = (category, sort_by, order) => {
+  return gamesApi.get(`/reviews?category=${category}`).then(({ data }) => {
+    return data;
+  });
+};

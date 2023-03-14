@@ -16,6 +16,7 @@ const ViewReview = () => {
   const [votes, setVotes] = useState("");
   const [voteWarning, setVoteWarning] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
+  const [buttonText, setButtonText] = useState("view comments");
 
   const { review_id } = useParams();
 
@@ -32,8 +33,11 @@ const ViewReview = () => {
 
   const renderComments = () => {
     if (isReadingComments) {
+      setButtonText("view comments");
+
       setIsReadingComments(false);
     } else {
+      setButtonText("hide comments");
       setIsReadingComments(true);
     }
   };
@@ -91,14 +95,15 @@ const ViewReview = () => {
           </section>
           <section className="review-button-container">
             <button
+              id="view-comments-button"
               onClick={() => {
                 renderComments(review_id);
               }}
             >
-              {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>}{" "}
-              ({review.comment_count})
+              {/* {!isReadingComments ? <p>view comments</p> : <p>hide comments</p>}{" "} */}
+              {buttonText} ({review.comment_count})
             </button>
-            <section>
+            <section className="upvote-downvote-section">
               <button
                 onClick={() => {
                   upvoteReview(review_id);
