@@ -58,6 +58,31 @@ body {
   margin-top: 25px;
 }
 
+.sort-reviews-section {
+  padding: 15px;
+  background-color: #282c34;
+  width: 70vw;
+  margin: auto;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+.sort-reviews-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.sort-reviews-buttons button {
+  padding: 5px 2vw 5px 2vw;
+  height: 30px;
+  font-size: x-small;
+}
+
+#search-btn {
+  background-color: #264953;
+}
+
 .review-list-section {
   margin-bottom: 25px;
   margin-top: 25px;
@@ -161,8 +186,7 @@ ul {
   list-style: none;
   padding-left: 0;
 }
-
-.category-list-section {
+button .category-list-section {
   border-radius: 5px;
   background-color: #282c34;
   padding: 15px;
