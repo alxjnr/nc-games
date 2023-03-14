@@ -34,6 +34,7 @@ const ViewComments = ({ isReadingComments, review_id }) => {
       postCommentToReview(review_id, comment)
         .then((data) => {
           setComments((comments) => {
+            comments.splice(comments.length - 1, 1);
             return [...comments, data.comment];
           });
           setComment("");
