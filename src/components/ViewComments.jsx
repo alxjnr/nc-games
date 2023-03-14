@@ -7,6 +7,7 @@ const ViewComments = ({ isReadingComments, review_id }) => {
   const [comments, setComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [postError, setPostError] = useState(false);
+  const [emptyError, setEmptyError] = useState(false);
 
   useEffect(() => {
     setIsLoadingComments(true);
@@ -18,17 +19,29 @@ const ViewComments = ({ isReadingComments, review_id }) => {
 
   const handleSubmit = (event, review_id) => {
     event.preventDefault();
-    postCommentToReview(review_id, comment)
-      .then(() => {
-        getCommentsOnReview(review_id).then((data) => {
-          setComments(data.reverse());
-          setPostError(false);
-        });
-        setComment("");
-      })
-      .catch(() => {
-        setPostError(true);
+    if (comment === "") {
+      setEmptyError(true);
+    } else {
+      setEmptyError(false);
+      let newComment = {
+        author: "grumpy19",
+        body: comment,
+        votes: 0,
+      };
+      setComments((comments) => {
+        return [...comments, newComment];
       });
+      postCommentToReview(review_id, comment)
+        .then((data) => {
+          setComments((comments) => {
+            return [...comments, data.comment];
+          });
+          setComment("");
+        })
+        .catch(() => {
+          setPostError(true);
+        });
+    }
   };
 
   return (
@@ -37,27 +50,26 @@ const ViewComments = ({ isReadingComments, review_id }) => {
         <h2>loading...</h2>
       ) : (
         <section>
-          <section>
+          <ul>
             {comments.length === 0 && isReadingComments ? (
               <h3>this review currently has no comments.</h3>
             ) : (
               <section>
                 {comments.map((comment) => {
                   return (
-                    <section
+                    <li
                       key={comment.created_at + comment.author}
                       className="comment-section"
                     >
                       <h5>{comment.author}</h5>
                       <h4>{comment.body}</h4>
                       <h5>votes: {comment.votes}</h5>
-                      <h5>{comment.created_at.slice(0, 10)}</h5>
-                    </section>
+                    </li>
                   );
                 })}
               </section>
             )}
-          </section>
+          </ul>
           <section>
             {!isReadingComments ? (
               <section></section>
@@ -81,6 +93,11 @@ const ViewComments = ({ isReadingComments, review_id }) => {
                   <section></section>
                 ) : (
                   <p>cannot post at this time</p>
+                )}
+                {emptyError ? (
+                  <p>comments cannot be empty, please try again.</p>
+                ) : (
+                  <section></section>
                 )}
               </section>
             )}

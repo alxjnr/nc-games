@@ -99,3 +99,7 @@ body {
   justify-content: space-evenly;
   margin-bottom: 25px;
 }
+
+ul {
+  list-style: none;
+}
