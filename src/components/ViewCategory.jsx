@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewsByCategory } from "../api";
+import { getReviews, getReviewsByCategory } from "../api";
 import { useNavigate } from "react-router-dom";
+import ContentFilter from "./ContentFilter";
 
 const ViewCategory = () => {
-  const [category, setCategory] = useState({});
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,8 +14,8 @@ const ViewCategory = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewsByCategory(category_name).then((data) => {
-      setReviews(data.reviews);
+    getReviews(category_name, "", "").then((data) => {
+      setReviews(data);
       setIsLoading(false);
     });
   }, []);
@@ -29,7 +29,11 @@ const ViewCategory = () => {
       <section>
         <h2>reviews for {category_name}</h2>
       </section>
-
+      <ContentFilter
+        setIsLoading={setIsLoading}
+        setReviews={setReviews}
+        category={category_name}
+      />
       <section>
         {isLoading ? (
           <h2>loading...</h2>

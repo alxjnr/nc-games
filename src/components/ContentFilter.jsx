@@ -2,9 +2,12 @@ import { useState } from "react";
 import { getReviews } from "../api";
 import { useSearchParams } from "react-router-dom";
 
-const ContentFilter = ({ setIsLoading, setReviews }) => {
+const ContentFilter = ({ setIsLoading, setReviews, category }) => {
+  if (!category) {
+    category = "";
+  }
   const [reviewQuery, setReviewQuery] = useState({
-    category: "",
+    category: category,
     sort_by: "created_at",
     order: "asc",
   });
