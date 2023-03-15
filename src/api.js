@@ -72,10 +72,10 @@ export const patchDownvoteReview = (review_id) => {
     });
 };
 
-export const postCommentToReview = (review_id, body) => {
+export const postCommentToReview = (review_id, body, user) => {
   return gamesApi
     .post(`/reviews/${review_id}/comments`, {
-      username: "grumpy19",
+      username: user,
       body: body,
     })
     .then(({ data }) => {

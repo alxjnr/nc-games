@@ -39,7 +39,7 @@ const ViewComments = ({ isReadingComments, review_id, user }) => {
         setComments((comments) => {
           return [...comments, newComment];
         });
-        postCommentToReview(review_id, comment)
+        postCommentToReview(review_id, comment, user)
           .then((data) => {
             setComments((comments) => {
               comments.splice(comments.length - 1, 1);
