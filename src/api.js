@@ -33,7 +33,7 @@ export const getReviews = (category, sort_by, order) => {
       orderQuery = `order=desc`;
     }
   }
-
+  console.log(`/reviews${isQuery}${categoryQuery}${sortByQuery}${orderQuery}`);
   return gamesApi
     .get(`/reviews${isQuery}${categoryQuery}${sortByQuery}${orderQuery}`)
     .then(({ data }) => {

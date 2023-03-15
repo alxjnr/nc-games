@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 import { getReviews } from "../api";
 import { useNavigate } from "react-router-dom";
+import ContentFilter from "./ContentFilter";
 const ListOfReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [reviewQuery, setReviewQuery] = useState({
-    category: "",
-    sort_by: "",
-    order: "",
-  });
-  const [order, setOrder] = useState("desc");
-  const [dateBtnColor, setDateBtnColor] = useState("#2f80ed");
-  const [commentsBtnColor, setCommentsBtnColor] = useState("#2f80ed");
-  const [votesBtnColor, setVotesBtnColor] = useState("#2f80ed");
 
   const navigate = useNavigate();
 
@@ -29,106 +21,9 @@ const ListOfReviews = () => {
     navigate(`/reviews/${review_id}`);
   };
 
-  const fetchReviewsWithQuery = () => {
-    setIsLoading(true);
-    let categoryQuery = reviewQuery.category;
-    let sortByQuery = reviewQuery.sort_by;
-    let orderQuery = reviewQuery.order;
-    getReviews(categoryQuery, sortByQuery, orderQuery).then((data) => {
-      setReviews(data);
-      setIsLoading(false);
-      setReviewQuery({
-        category: "",
-        sort_by: "",
-        order: "",
-      });
-      setDateBtnColor("#2f80ed");
-      setCommentsBtnColor("#2f80ed");
-      setVotesBtnColor("#2f80ed");
-    });
-  };
-
-  const flipOrder = () => {
-    if (order === "asc") {
-      setOrder("desc");
-    } else {
-      setOrder("asc");
-    }
-  };
-
-  const clearQueries = () => {
-    setReviewQuery({
-      category: "",
-      sort_by: "",
-      order: "",
-    });
-    setDateBtnColor("#2f80ed");
-    setCommentsBtnColor("#2f80ed");
-    setVotesBtnColor("#2f80ed");
-  };
-
   return (
     <section>
-      <section className="sort-reviews-section">
-        <h5>filter</h5>
-        <section className="sort-reviews-buttons">
-          <button
-            onClick={() => {
-              dateBtnColor === "#0d2c57" &&
-              commentsBtnColor === "#0d2c57" &&
-              votesBtnColor === "#0d2c57"
-                ? setDateBtnColor("#2f80ed")
-                : setDateBtnColor("#0d2c57");
-              setReviewQuery((queries) => {
-                return { ...queries, sort_by: "created_at" };
-              });
-            }}
-            style={{ backgroundColor: dateBtnColor }}
-          >
-            date
-          </button>
-          <button
-            onClick={() => {
-              commentsBtnColor === "#0d2c57"
-                ? setCommentsBtnColor("#2f80ed")
-                : setCommentsBtnColor("#0d2c57");
-              setReviewQuery((queries) => {
-                return { ...queries, sort_by: "comment_count" };
-              });
-            }}
-            style={{ backgroundColor: commentsBtnColor }}
-          >
-            comments
-          </button>
-          <button
-            onClick={() => {
-              votesBtnColor === "#0d2c57"
-                ? setVotesBtnColor("#2f80ed")
-                : setVotesBtnColor("#0d2c57");
-              setReviewQuery((queries) => {
-                return { ...queries, sort_by: "votes" };
-              });
-            }}
-            style={{ backgroundColor: votesBtnColor }}
-          >
-            votes
-          </button>
-          <button
-            onClick={() => {
-              flipOrder();
-              setReviewQuery((queries) => {
-                return { ...queries, order: order };
-              });
-            }}
-          >
-            {order === "asc" ? "order asc" : "order desc"}
-          </button>
-          <button id="search-btn" onClick={fetchReviewsWithQuery}>
-            search
-          </button>
-          <button onClick={clearQueries}>clear</button>
-        </section>
-      </section>
+      <ContentFilter setIsLoading={setIsLoading} setReviews={setReviews} />
       <section>
         {isLoading ? (
           <h2>loading...</h2>

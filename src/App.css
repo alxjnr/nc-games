@@ -59,26 +59,34 @@ body {
 }
 
 .sort-reviews-section {
-  padding: 15px;
+  padding: 10px;
   background-color: #282c34;
   width: 80vw;
+  max-width: 350px;
   margin: auto;
   margin-top: 25px;
   border-radius: 5px;
 }
 
-.sort-reviews-buttons {
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+.sort-reviews-section select {
+  border: white;
+  padding: 5px;
+  width: 150px;
+  border-radius: 5px;
+  margin-left: 2vw;
 }
 
-.sort-reviews-buttons button {
+.sort-reviews-section button {
   padding: 5px 2vw 5px 2vw;
   height: 30px;
   font-size: x-small;
-  margin: 5px;
+  margin-top: 20px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.sort-reviews-button-section {
+  display: block;
 }
 
 #search-btn {
@@ -188,7 +196,7 @@ ul {
   list-style: none;
   padding-left: 0;
 }
-button .category-list-section {
+.category-list-section {
   border-radius: 5px;
   background-color: #282c34;
   padding: 15px;
