@@ -94,3 +94,16 @@ export const getReviewsByCategory = (category, sort_by, order) => {
     return data;
   });
 };
+
+export const getUser = (username) => {
+  return gamesApi.get(`/users`).then(({ data }) => {
+    const filteredUsers = data.users.filter((user) => {
+      return user.username === username;
+    });
+    return filteredUsers;
+  });
+};
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`comments/${comment_id}`);
+};

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import LogIn from "./LogIn";
 
-const Home = () => {
+const Home = ({ setUser, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const navigateToReviews = () => {
@@ -12,10 +13,13 @@ const Home = () => {
   };
 
   return (
-    <section className="home-section">
-      <button onClick={navigateToReviews}>reviews</button>
-      <br></br>
-      <button onClick={navigateToCategories}>categories</button>
+    <section>
+      <section className="home-section">
+        <button onClick={navigateToReviews}>reviews</button>
+        <br></br>
+        <button onClick={navigateToCategories}>categories</button>
+      </section>
+      <LogIn setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
     </section>
   );
 };
