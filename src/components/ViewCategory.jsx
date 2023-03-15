@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewsByCategory } from "../api";
+import { getReviews, getReviewsByCategory } from "../api";
 import { useNavigate } from "react-router-dom";
+import ContentFilter from "./ContentFilter";
 
 const ViewCategory = () => {
-  const [category, setCategory] = useState({});
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,8 +14,8 @@ const ViewCategory = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewsByCategory(category_name).then((data) => {
-      setReviews(data.reviews);
+    getReviews(category_name, "", "").then((data) => {
+      setReviews(data);
       setIsLoading(false);
     });
   }, []);
@@ -26,32 +26,41 @@ const ViewCategory = () => {
 
   return (
     <section>
-      <h2>reviews for {category_name}</h2>
-      {isLoading ? (
-        <h2>loading...</h2>
-      ) : (
-        <ul>
-          {reviews.map((review) => {
-            return (
-              <li
-                key={review.title}
-                className="review-list-cards"
-                onClick={() => {
-                  navigateToReview(review.review_id);
-                }}
-              >
-                <h2>{review.title}</h2>
-                <img src={review.review_img_url} alt={review.title} />
-                <h4>{review.owner}</h4>
-                <section className="votes-comments-section">
-                  <h5>votes: {review.votes}</h5>
-                  <h5>comments: {review.comment_count}</h5>
-                </section>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <section>
+        <h2>reviews for {category_name}</h2>
+      </section>
+      <ContentFilter
+        setIsLoading={setIsLoading}
+        setReviews={setReviews}
+        category={category_name}
+      />
+      <section>
+        {isLoading ? (
+          <h2>loading...</h2>
+        ) : (
+          <ul>
+            {reviews.map((review) => {
+              return (
+                <li
+                  key={review.title}
+                  className="review-list-cards"
+                  onClick={() => {
+                    navigateToReview(review.review_id);
+                  }}
+                >
+                  <h2>{review.title}</h2>
+                  <img src={review.review_img_url} alt={review.title} />
+                  <h4>{review.owner}</h4>
+                  <section className="votes-comments-section">
+                    <h5>votes: {review.votes}</h5>
+                    <h5>comments: {review.comment_count}</h5>
+                  </section>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </section>
     </section>
   );
 };

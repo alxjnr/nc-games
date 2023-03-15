@@ -21,7 +21,6 @@ const ViewReview = () => {
   const { review_id } = useParams();
 
   useEffect(() => {
-    console.log("in use effect");
     setIsLoading(true);
     getReviewById(review_id).then((data) => {
       setReview(data[0]);

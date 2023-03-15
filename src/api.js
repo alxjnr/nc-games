@@ -4,10 +4,40 @@ const gamesApi = axios.create({
   baseURL: "https://nc-games-hsvp.onrender.com/api",
 });
 
-export const getReviews = () => {
-  return gamesApi.get("/reviews").then(({ data }) => {
-    return data.reviews;
-  });
+export const getReviews = (category, sort_by, order) => {
+  let categoryQuery = "";
+  let sortByQuery = "";
+  let orderQuery = "";
+  let isQuery = "";
+
+  if (category !== "") {
+    categoryQuery = `category=${category}&`;
+  }
+
+  if (sort_by !== "") {
+    sortByQuery = `sort_by=${sort_by}&`;
+  }
+
+  if (order !== "") {
+    orderQuery = `order=${order}`;
+  }
+
+  if (category !== "" || sort_by !== "" || order !== "") {
+    isQuery = "?";
+  }
+
+  if (isQuery === "?") {
+    if (orderQuery !== "") {
+      orderQuery = `order=${order}`;
+    } else {
+      orderQuery = `order=desc`;
+    }
+  }
+  return gamesApi
+    .get(`/reviews${isQuery}${categoryQuery}${sortByQuery}${orderQuery}`)
+    .then(({ data }) => {
+      return data.reviews;
+    });
 };
 
 export const getReviewById = (review_id) => {
