@@ -6,15 +6,25 @@ import ListOfReviews from "./components/ListOfReviews";
 import ViewReview from "./components/ViewReview";
 import ListOfCategories from "./components/ListOfCategories";
 import ViewCategory from "./components/ViewCategory";
+import { useState } from "react";
 
 function App() {
+  const [user, setUser] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
-      <Header />
+      <Header user={user} isLoggedIn={isLoggedIn} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home setUser={setUser} setIsLoggedIn={setIsLoggedIn} />}
+        />
         <Route path="/reviews" element={<ListOfReviews />} />
-        <Route path="/reviews/:review_id" element={<ViewReview />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<ViewReview user={user} />}
+        />
         <Route path="/categories" element={<ListOfCategories />} />
         <Route path="/categories/:category_name" element={<ViewCategory />} />
       </Routes>

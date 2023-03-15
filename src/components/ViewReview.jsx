@@ -8,7 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 import ViewComments from "./ViewComments";
 
-const ViewReview = () => {
+const ViewReview = ({ user }) => {
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [createdDate, setCreatedDate] = useState("");
@@ -130,6 +130,7 @@ const ViewReview = () => {
               isReadingComments={isReadingComments}
               review_id={review_id}
               setIsReadingComments={setIsReadingComments}
+              user={user}
             />
           ) : (
             <section></section>

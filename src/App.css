@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -11,9 +11,9 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -43,15 +43,58 @@ body {
 }
 
 .header-section {
+  /* display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap; */
   border-bottom: solid rgb(92, 92, 92) 2px;
   width: 70vw;
   margin: auto;
+}
+
+.header-section h1 {
+  display: inline-block;
+}
+
+.header-section h6 {
+  display: inline-block;
+  margin-left: 10vw;
+}
+
+.user-panel {
+  border: solid black 2px;
+  position: relative;
+  display: inline-block;
 }
 
 .home-section {
   display: block;
   margin: auto;
   margin-top: 25px;
+}
+
+.log-in-form {
+  width: 70vw;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 25px;
+  padding: 15px;
+  background-color: #282c34;
+  border-radius: 5px;
+}
+
+.log-in-form input {
+  border: white;
+  width: 150px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.log-in-form button {
+  padding: 5px 2vw 5px 2vw;
+  height: 25px;
+  font-size: x-small;
+  margin-left: 5vw;
+  margin-right: 2vw;
 }
 
 .home-section button {
@@ -147,6 +190,14 @@ body {
   margin-top: 25px;
   margin-bottom: 25px;
   text-align: left;
+}
+
+.comment-section button {
+  padding: 5px 2vw 5px 2vw;
+  height: 30px;
+  font-size: xx-small;
+  margin-right: 2vw;
+  background-color: #11407e;
 }
 
 .review-button-container {

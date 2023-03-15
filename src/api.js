@@ -72,10 +72,10 @@ export const patchDownvoteReview = (review_id) => {
     });
 };
 
-export const postCommentToReview = (review_id, body) => {
+export const postCommentToReview = (review_id, body, user) => {
   return gamesApi
     .post(`/reviews/${review_id}/comments`, {
-      username: "grumpy19",
+      username: user,
       body: body,
     })
     .then(({ data }) => {
@@ -93,4 +93,17 @@ export const getReviewsByCategory = (category, sort_by, order) => {
   return gamesApi.get(`/reviews?category=${category}`).then(({ data }) => {
     return data;
   });
+};
+
+export const getUser = (username) => {
+  return gamesApi.get(`/users`).then(({ data }) => {
+    const filteredUsers = data.users.filter((user) => {
+      return user.username === username;
+    });
+    return filteredUsers;
+  });
+};
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`comments/${comment_id}`);
 };
