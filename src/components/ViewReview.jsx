@@ -95,7 +95,7 @@ const ViewReview = ({ user }) => {
           <img src={review.review_img_url} alt={review.title} />
           <h5>game designer: {review.designer}</h5>
           <section className="review-body-section">
-            <h3>{review.review_body}</h3>
+            <p>{review.review_body}</p>
           </section>
           <section className="review-button-container">
             <button
