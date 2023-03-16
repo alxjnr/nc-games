@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# NC-GAMES
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is currently hosted [here](https://effulgent-chebakia-e5a2c9.netlify.app/):
 
-## Available Scripts
+`https://effulgent-chebakia-e5a2c9.netlify.app/`
 
-In the project directory, you can run:
+*requests to the API might take time.*
+<br>
+<br>
+NC-GAMES is a robust web application that provides a comprehensive database of board game reviews and information. The app allows users to interact with the database by voting and commenting on the reviews, as well as filtering the reviews and games by date, comments, and votes. 
+<br>
+<br>
+The application is built using modern web technologies, including React for the front-end, and Node.js and Express for the back-end. The back-end is designed as a RESTful API, which allows for easy communication between the client and server. The API is hosted on Netlify and uses a PostgreSQL database to store the game reviews and user information.
+<br>
+<br>
+For testing purposes, users of this app may log in as a default user, but any user is accessible.
 
-### `npm start`
+# Backend API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The repository for the API of this app can be accessed [here](https://github.com/alxjnr/be-nc-games):
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`https://github.com/alxjnr/be-nc-games`
 
-### `npm test`
+Minimum requirements for running this app locally:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`Node v19.3.0`
 
-### `npm run build`
+# Cloning this app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Users wishing to this app locally may do so with the following Git commands:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+git clone https://github.com/alxjnr/nc-games.git
+cd nc-games
+npm run
+```
