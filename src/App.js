@@ -7,6 +7,7 @@ import ViewReview from "./components/ViewReview";
 import ListOfCategories from "./components/ListOfCategories";
 import ViewCategory from "./components/ViewCategory";
 import { useState } from "react";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [user, setUser] = useState("");
@@ -27,6 +28,7 @@ function App() {
         />
         <Route path="/categories" element={<ListOfCategories />} />
         <Route path="/categories/:category_name" element={<ViewCategory />} />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </div>
   );

@@ -7,6 +7,7 @@ import {
 } from "../api";
 import { useParams } from "react-router-dom";
 import ViewComments from "./ViewComments";
+import InvalidReview from "./InvalidReview";
 
 const ViewReview = ({ user }) => {
   const [review, setReview] = useState({});
@@ -17,17 +18,23 @@ const ViewReview = ({ user }) => {
   const [voteWarning, setVoteWarning] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
   const [buttonText, setButtonText] = useState("view comments");
+  const [isInvalidReview, setIsInvalidReview] = useState(false);
 
   const { review_id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewById(review_id).then((data) => {
-      setReview(data[0]);
-      setCreatedDate(data[0].created_at.slice(0, 10));
-      setVotes(data[0].votes);
-      setIsLoading(false);
-    });
+    getReviewById(review_id)
+      .then((data) => {
+        setReview(data[0]);
+        setCreatedDate(data[0].created_at.slice(0, 10));
+        setVotes(data[0].votes);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsInvalidReview(true);
+        setIsLoading(false);
+      });
   }, [review_id]);
 
   const renderComments = () => {
@@ -77,8 +84,11 @@ const ViewReview = ({ user }) => {
 
   return (
     <section>
+      {/* {isInvalidReview ? <h2>no review</h2> : <section></section>} */}
       {isLoading ? (
         <h2>loading...</h2>
+      ) : isInvalidReview ? (
+        <InvalidReview />
       ) : (
         <section className="single-review-section">
           <h2>{review.title}</h2>
