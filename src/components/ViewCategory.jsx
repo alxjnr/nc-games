@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviews, getReviewsByCategory } from "../api";
+import { getReviews } from "../api";
 import { useNavigate } from "react-router-dom";
 import ContentFilter from "./ContentFilter";
 import InvalidCategory from "./InvalidCategory";
@@ -25,7 +25,7 @@ const ViewCategory = () => {
         setIsLoading(false);
         setIsInvalidCategory(true);
       });
-  }, []);
+  }, [category_name]);
 
   const navigateToReview = (review_id) => {
     navigate(`/reviews/${review_id}`);

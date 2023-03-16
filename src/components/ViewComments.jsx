@@ -19,7 +19,7 @@ const ViewComments = ({ isReadingComments, review_id, user }) => {
       setComments(data.reverse());
       setIsLoadingComments(false);
     });
-  }, []);
+  }, [review_id]);
 
   const handleSubmit = (event, review_id) => {
     event.preventDefault();

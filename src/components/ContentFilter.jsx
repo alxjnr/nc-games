@@ -26,6 +26,8 @@ const ContentFilter = ({ setIsLoading, setReviews, category }) => {
     });
   };
 
+  console.log(searchParams);
+
   const clearQueries = () => {
     setReviewQuery({
       category: "",
