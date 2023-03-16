@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getReviewById,
-  getCommentsOnReview,
-  patchUpvoteReview,
-  patchDownvoteReview,
-} from "../api";
+import { getReviewById, patchUpvoteReview, patchDownvoteReview } from "../api";
 import { useParams } from "react-router-dom";
 import ViewComments from "./ViewComments";
 import InvalidReview from "./InvalidReview";
