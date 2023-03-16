@@ -97,6 +97,13 @@ body {
   margin-right: 2vw;
 }
 
+#test-user-button {
+  background-color: #264953;
+  margin-top: 20px;
+  padding: 5px 2vw 5px 2vw;
+  height: 25px;
+}
+
 .home-section button {
   margin-top: 25px;
 }

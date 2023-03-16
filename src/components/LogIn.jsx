@@ -18,6 +18,20 @@ const LogIn = ({ setUser, setIsLoggedIn }) => {
       }
     });
   };
+
+  const handleTestLogin = () => {
+    getUser("grumpy19").then((data) => {
+      if (!data.length) {
+        setUserError(true);
+      } else {
+        setUserError(false);
+        setUser("grumpy19");
+        setIsLoggedIn(true);
+        setUsername("");
+      }
+    });
+  };
+
   return (
     <form className="log-in-form" onSubmit={handleSubmit}>
       <input
@@ -29,6 +43,9 @@ const LogIn = ({ setUser, setIsLoggedIn }) => {
       ></input>
       <button>log in</button>
       {userError ? <h5>invalid username</h5> : <section></section>}
+      <button id="test-user-button" onClick={handleTestLogin} type="button">
+        test user
+      </button>
     </form>
   );
 };
