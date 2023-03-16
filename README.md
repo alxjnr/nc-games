@@ -4,6 +4,9 @@ This app is currently hosted [here](https://effulgent-chebakia-e5a2c9.netlify.ap
 
 `https://effulgent-chebakia-e5a2c9.netlify.app/`
 
+*requests to the API might take time.*
+<br>
+<br>
 NC-GAMES is a robust web application that provides a comprehensive database of board game reviews and information. The app allows users to interact with the database by voting and commenting on the reviews, as well as filtering the reviews and games by date, comments, and votes. 
 <br>
 <br>
